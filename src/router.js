@@ -17,6 +17,8 @@ const router = (req, res) => {
       return movie(req, res);
     } else if (endpoint === "/api/movies/list") {
       return requestModule(req, res);
+    } else if (endpoint.indexOf("movie") !== -1) {
+      return movie(req, res);
     } else if (endpoint.indexOf("public") !== -1) {
       handlepublic(req, res);
     } else {

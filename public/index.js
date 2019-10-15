@@ -3,7 +3,7 @@ var list;
 var prevInput = "";
 var search = document.getElementById("Search");
 
-function createMyElement(title, imagePath) {
+function createMyElement(filmObj) {
   var subContainer = document.createElement("div");
   subContainer.className = "subContaine";
 
@@ -11,17 +11,21 @@ function createMyElement(title, imagePath) {
   link.className = "filmLink";
   // var newtitle = title.replace(/\s+/g, "");
 
-  link.setAttribute("href", "/movie" + "?filmName=" + title);
+  var qs = `?filmName=${filmObj.title}&img=${filmObj.img}&vote=${filmObj.vote}&release_date=${filmObj.vote}&overview=${filmObj.overview}`;
+
+  link.setAttribute("href", "/movie" + qs);
   link.setAttribute("name", "helloButton");
+  link.setAttribute("target", "_blank");
+
   link.innerHTML = "More Details";
 
   var img = document.createElement("img");
-  img.src = imagePath;
+  img.src = filmObj.img;
 
   var titlepara = document.createElement("p");
   titlepara.className = "title";
 
-  titlepara.innerHTML = title;
+  titlepara.innerHTML = filmObj.title;
   subContainer.appendChild(titlepara);
   subContainer.appendChild(img);
 
@@ -54,7 +58,15 @@ search.oninput = function() {
   parent.appendChild(container);
   // var names = list.map(x => x.title).join(",");
   list.forEach(e => {
-    createMyElement(e.title, "https://image.tmdb.org/t/p/w400" + e.poster_path);
+    var filmObj = {
+      title: e.title,
+      img: "https://image.tmdb.org/t/p/w400" + e.poster_path,
+      vote: e.vote_count,
+      release_date: e.release_date,
+      overview: e.overview
+    };
+
+    createMyElement(filmObj);
   });
 };
 

@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Movies Autocomplete</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link type="text/css" rel="stylesheet" href="public/style.css" />
+
+    <title>movie page</title>
   </head>
   <body>
-    <h1>movie</h1>
-    <script src="/public/movie.js"></script>
+    <div class="film_container">
+      <div class="row">
+        <div class="column1" style="background-color:#aaa;">
+          <img src="" alt="film_image" id="film_image" />
+        </div>
+        <div class="column2" style="background-color:rgb(163, 56, 56);">
+          <h1 id="film_name"></h1>
+          <h2 id="filmvots"></h2>
+          <p id="overview"></p>
+          <h2 id="date"></h2>
+        </div>
+      </div>
+    </div>
+
+    <script src="/public/movi_details.js"></script>
   </body>
 </html>
