@@ -4,6 +4,7 @@
         "es6": true,
         "amd": true,
         "node": true
+
     },
     "extends": "eslint:recommended",
     "globals": {
