@@ -21,6 +21,7 @@ const requestModule = (request, response) => {
       results = results.concat(JSON.parse(body).results);
     });
   }
+
   setTimeout(function() {
     response.writeHead(200, { "content-type": "application/json" });
     response.end(JSON.stringify(results));

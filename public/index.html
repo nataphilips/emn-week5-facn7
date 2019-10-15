@@ -17,11 +17,19 @@
       <table id="form-table">
         <tr>
           <th>
-            <label for="search-movie">Search: </label>
+            <form action="./" method="POST">
+              <label for="search-movie">Search: </label>
+              <input
+                id="Search"
+                name="search-movie"
+                type="text"
+                placeholder="movie name"
+              />
+
+              <input type="submit" value="Submit" />
+            </form>
           </th>
-          <th>
-            <input id="Search" type="text" placeholder="movie name" />
-          </th>
+          <th></th>
         </tr>
       </table>
     </section>
