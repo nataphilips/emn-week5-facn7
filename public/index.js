@@ -1,3 +1,13 @@
+const filter = ((str,arr)=>{
+   const filtered=[];
+    arr.map((e)=>{
+        if(e.title.includes(str)===true){
+            filtered.add(e);
+        }
+    })
+return filtered;
+})
+
 function fetchBase() {
   var url = "/api/movies/list";
 
@@ -17,3 +27,5 @@ function fetchBase() {
 }
 
 fetchBase();
+module.exports=filter;
+
