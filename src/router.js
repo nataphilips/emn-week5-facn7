@@ -1,27 +1,33 @@
-const url = require('url');
-const home = require('./home');
-const movie = require('./movie');
-const notFound = require('./notfound.js');
+const url = require("url");
+const home = require("./home");
+const handlepublic = require("./handlepublic");
+const movie = require("./movie");
+const notFound = require("./notfound.js");
+const querystring = require("querystring");
+const fs = require("fs");
+const path = require("path");
+const requestModule = require("./fetch.js");
 
+const router = (req, res) => {
+  const endpoint = req.url;
 
-const router = ((request, response) => {
-    // basic route logger
-  console.log(`${request.method} ${request.url}`);
-  
-  // grab pathname 
-  const { pathname } = url.parse(request.url);
-  
-  // router
-  switch(pathname){
-    case `/`:
-      return home(request, response);
-
-    case `/movie`:
-      return movie(request,response);
-
-    default:
-      return notFound(request, response);
+  switch (endpoint) {
+    case "/": {
+      return home(req, res);
     }
-})
+
+    case "/movie": {
+      return;
+    }
+
+    case "/api/movies/list": {
+      return requestModule(req, res);
+    }
+
+    default: {
+      return handlepublic(req, res);
+    }
+  }
+};
 
 module.exports = router;
