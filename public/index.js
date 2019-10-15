@@ -3,44 +3,49 @@ var list;
 var prevInput = "";
 var search = document.getElementById("Search");
 
+function createMyElement(title,imagePath){
+
+  var subContainer=document.createElement("div");
+  var img=document.createElement("img");
+  img.src=imagePath;
+  var titleSpan = document.createElement("span");
+  titleSpan.innerHTML=title;
+  subContainer.appendChild(titleSpan);
+  subContainer.appendChild(img);
+  var cont=  document
+  .getElementById("results-container");
+  cont.appendChild(subContainer);
+
+
+}
+
 search.oninput = function() {
+
   console.log("working");
   var data = search.value;
+  // if(data.length<3){
+  //   console.log(data,data.length);
+  //   return;
+  // }
+  // console.log(data.length);
   if (data.length < prevInput.length) {
     list = base;
   }
   prevInput = data;
   list = filter(data, list);
-  var names = list.map(x => x.title).join(",");
-  var node = document.createElement("div");
-  document
-    .getElementById("results-container")
-    .appendChild(node).innerHTML = names;
-  // if (document.readyState === "complete") {
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.onreadystatechange = function() {
-  //     if (xhr.readyState === 4) {
-  //       if (xhr.status === 200) {
-  //         var data = JSON.parse(xhr.responseText);
-  //         // logic here
-  //         if (data.length < prevInput.length) {
-  //           list = base;
-  //         }
-  //         prevInput = data;
-  //         list = filter(data, list);
-  //         var names = list.map(x => x.title).join(",");
-  //         var node = document.createElement("div");
-  //         document
-  //           .getElementById("results-container")
-  //           .appendChild(node).innerHTML = names;
-  //       } else {
-  //         console.error(xhr.responseText);
-  //       }
-  //     }
-  //   };
-  //   xhr.open("GET", "/bla", true);
-  //   xhr.send();
-  // }
+  console.log(list.length);
+  var container=document.getElementById("results-container");
+  var parent=document.getElementById("bigcont");
+  container.remove();
+  container=document.createElement("div");
+  container.id="results-container";
+  parent.appendChild(container);
+  // var names = list.map(x => x.title).join(",");
+  list.forEach(e=>{
+createMyElement(e.title,"https://image.tmdb.org/t/p/w400"+e.poster_path);
+  });
+ 
+
 };
 
 var elem = document.createElement("img");
@@ -51,7 +56,7 @@ elem.setAttribute(
 
 var data = [elem, elem, elem];
 console.log(data.length);
-showData(data);
+// showData(data);
 function showData(data) {
   var div = document.querySelector(".container");
   div.remove();
@@ -75,7 +80,11 @@ function showData(data) {
 // This function gets an array of movie objects, which title includes the string passed as arg
 
 const filter = (str, arr) => {
-  return arr.filter(e => e.title.includes(str));
+  return arr.filter(e =>{ 
+    var ltitle=e.title.toLowerCase();
+    str=str.toLowerCase();
+  return  ltitle.includes(str);
+  })
 };
 
 // This function gets movie database JSON
@@ -88,7 +97,7 @@ function fetchBase() {
     .then(function(response) {
       base = response.data;
       list = [...base];
-      console.log("fetch", list);
+      console.log("fetch:", base);
     })
     .catch(function(error) {
       console.log(error);

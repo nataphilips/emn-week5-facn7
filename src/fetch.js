@@ -25,7 +25,7 @@ const requestModule = (request, response) => {
   setTimeout(function() {
     response.writeHead(200, { "content-type": "application/json" });
     response.end(JSON.stringify(results));
-  }, 1000);
+  }, 3000);
 };
 
 module.exports = requestModule;
