@@ -15,9 +15,8 @@ module.exports = (req, res) => {
     png: "image/png"
   };
 
-  const filePath = __dirname+"/.." + endpoint;
+  const filePath = __dirname + "/.." + endpoint;
   fs.readFile(filePath, (error, file) => {
-
     if (error) {
       console.log(error);
       res.writeHead(404, { "Content-Type": "text/html" });

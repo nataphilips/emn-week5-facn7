@@ -1,3 +1,48 @@
+var base = fetchBase();
+var list;
+var prevInput = "";
+var search = document.getElementById("Search");
+
+search.oninput = function() {
+  console.log("working");
+  var data = search.value;
+  if (data.length < prevInput.length) {
+    list = base;
+  }
+  prevInput = data;
+  list = filter(data, list);
+  var names = list.map(x => x.title).join(",");
+  var node = document.createElement("div");
+  document
+    .getElementById("results-container")
+    .appendChild(node).innerHTML = names;
+  // if (document.readyState === "complete") {
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.onreadystatechange = function() {
+  //     if (xhr.readyState === 4) {
+  //       if (xhr.status === 200) {
+  //         var data = JSON.parse(xhr.responseText);
+  //         // logic here
+  //         if (data.length < prevInput.length) {
+  //           list = base;
+  //         }
+  //         prevInput = data;
+  //         list = filter(data, list);
+  //         var names = list.map(x => x.title).join(",");
+  //         var node = document.createElement("div");
+  //         document
+  //           .getElementById("results-container")
+  //           .appendChild(node).innerHTML = names;
+  //       } else {
+  //         console.error(xhr.responseText);
+  //       }
+  //     }
+  //   };
+  //   xhr.open("GET", "/bla", true);
+  //   xhr.send();
+  // }
+};
+
 var elem = document.createElement("img");
 elem.setAttribute(
   "src",
@@ -13,9 +58,6 @@ function showData(data) {
   div = document.createElement("div");
   div.className = "container";
   document.getElementById("bigcont").appendChild(div);
-  // var h1 = document.createElement("h1");
-
-  // div.appendChild(h1);
 
   if (data.length == 0) {
     var h1 = document.createElement("h1");
@@ -29,15 +71,14 @@ function showData(data) {
     });
   }
 }
+
+// This function gets an array of movie objects, which title includes the string passed as arg
+
 const filter = (str, arr) => {
-  const filtered = [];
-  arr.map(e => {
-    if (e.title.includes(str) === true) {
-      filtered.add(e);
-    }
-  });
-  return filtered;
+  return arr.filter(e => e.title.includes(str));
 };
+
+// This function gets movie database JSON
 
 function fetchBase() {
   var url = "/api/movies/list";
@@ -45,17 +86,12 @@ function fetchBase() {
   axios
     .get(url)
     .then(function(response) {
-      var names = response.data.map(x => x.title).join(",");
-      var node = document.createElement("div");
-      document
-        .getElementById("results-container")
-        .appendChild(node).innerHTML = names;
-      console.log(names);
+      base = response.data;
+      list = [...base];
+      console.log("fetch", list);
     })
     .catch(function(error) {
       console.log(error);
     });
+  return base;
 }
-
-fetchBase();
-module.exports = filter;
