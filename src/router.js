@@ -10,7 +10,7 @@ const requestModule = require("./fetch.js");
 
 const router = (req, res) => {
   const endpoint = req.url;
-
+console.log(endpoint);
   switch (endpoint) {
     case "/": {
       return home(req, res);
