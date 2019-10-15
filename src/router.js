@@ -14,11 +14,10 @@ const router = (req, res) => {
     if (endpoint === "/") {
       return home(req, res);
     } else if (endpoint === "/movie") {
-      return;
+      return movie(req, res);
     } else if (endpoint === "/api/movies/list") {
       return requestModule(req, res);
     } else if (endpoint.indexOf("public") !== -1) {
-      console.log("here we are");
       handlepublic(req, res);
     } else {
       return notFound(req, res);
