@@ -3,10 +3,6 @@ elem.setAttribute(
   "src",
   "https://www.ssbwiki.com/images/thumb/1/12/KJH.jpg/160px-KJH.jpg"
 );
-elem.setAttribute("height", "400");
-elem.setAttribute("width", "400");
-
-elem.setAttribute("alt", "Flower");
 
 var data = [elem, elem, elem];
 console.log(data.length);
