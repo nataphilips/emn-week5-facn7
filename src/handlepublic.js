@@ -15,7 +15,7 @@ module.exports = (req, res) => {
     png: "image/png"
   };
 
-  const filePath = __dirname+"/../public" + endpoint;
+  const filePath = __dirname+"/.." + endpoint;
   fs.readFile(filePath, (error, file) => {
 
     if (error) {
