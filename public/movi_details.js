@@ -39,3 +39,7 @@ console.log(filmObj);
   var date = document.getElementById("date");
   date.innerHTML = "Release date: <br>" + filmObj.release_date;
 })();
+
+// module.exports = {
+//   getParameterByName
+// };

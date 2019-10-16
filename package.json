@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js | tap-spec",
+    "test": "node ./src/test.js | tap-spec",
     "start": "node server.js"
   },
   "author": "",
