@@ -1,7 +1,9 @@
-var base = fetchBase();
-var list;
-var prevInput = "";
-var search = document.getElementById("Search");
+if (typeof module === "undefined") {
+  var base = fetchBase();
+  var list;
+  var prevInput = "";
+  var search = document.getElementById("Search");
+}
 
 function createMyElement(filmObj) {
   var subContainer = document.createElement("div");
@@ -35,41 +37,41 @@ function createMyElement(filmObj) {
   var cont = document.getElementById("results-container");
   cont.appendChild(subContainer);
 }
+if (typeof module === "undefined") {
+  search.oninput = function() {
+    console.log("working");
+    var data = search.value;
+    // if(data.length<3){
+    //   console.log(data,data.length);
+    //   return;
+    // }
+    // console.log(data.length);
+    if (data.length < prevInput.length) {
+      list = base;
+    }
+    prevInput = data;
+    list = filter(data, list);
+    console.log(list.length);
+    var container = document.getElementById("results-container");
+    var parent = document.getElementById("bigcont");
+    container.remove();
+    container = document.createElement("div");
+    container.id = "results-container";
+    parent.appendChild(container);
+    // var names = list.map(x => x.title).join(",");
+    list.forEach(e => {
+      var filmObj = {
+        title: e.title,
+        img: "https://image.tmdb.org/t/p/w400" + e.poster_path,
+        vote: e.vote_count,
+        release_date: e.release_date,
+        overview: e.overview
+      };
 
-search.oninput = function() {
-  console.log("working");
-  var data = search.value;
-  // if(data.length<3){
-  //   console.log(data,data.length);
-  //   return;
-  // }
-  // console.log(data.length);
-  if (data.length < prevInput.length) {
-    list = base;
-  }
-  prevInput = data;
-  list = filter(data, list);
-  console.log(list.length);
-  var container = document.getElementById("results-container");
-  var parent = document.getElementById("bigcont");
-  container.remove();
-  container = document.createElement("div");
-  container.id = "results-container";
-  parent.appendChild(container);
-  // var names = list.map(x => x.title).join(",");
-  list.forEach(e => {
-    var filmObj = {
-      title: e.title,
-      img: "https://image.tmdb.org/t/p/w400" + e.poster_path,
-      vote: e.vote_count,
-      release_date: e.release_date,
-      overview: e.overview
-    };
-
-    createMyElement(filmObj);
-  });
-};
-
+      createMyElement(filmObj);
+    });
+  };
+}
 // showData(data);
 // function showData(data) {
 //   var div = document.querySelector(".container");
@@ -105,7 +107,9 @@ const filter = (str, arr) => {
 
 function fetchBase() {
   var url = "/api/movies/list";
+  // let axios = typeof module !== "undefined" ? require("axios") : axios;
 
+  // eslint-disable-next-line no-undef
   axios
     .get(url)
     .then(function(response) {
@@ -134,4 +138,10 @@ function fetchBase() {
       console.log(error);
     });
   return base;
+}
+
+if (typeof module !== "undefined") {
+  module.exports = {
+    filter
+  };
 }
