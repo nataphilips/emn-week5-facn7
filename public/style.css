@@ -2,22 +2,69 @@
   width: 100%;
 }
 
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  background-color: #3c1642;
+  color: #b2ff9e;
+}
+.jambo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.jamoHeader h1 {
+  text-align: center;
+  font-size: 48px;
+}
+
+#form-table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  font-size: 24px;
+  margin: 20px 0px;
+}
+
+#Search {
+  height: 30px;
+  margin: 0px 10px;
+  width: 450px;
+}
+
 .subContaine {
   border-style: solid;
-  border-color: black;
+  border-color: #1dd3b0;
   margin: 15px;
   margin-left: 5px;
   margin-bottom: 10px;
   max-width: 400px;
   /* width: 33%; */
-  height: 800px;
+  height: 750px;
   float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subContaine img {
+  width: 90%;
+}
+
+.subContaine p {
+  height: 10%;
+  text-align: center;
+  color: #1dd3b0;
 }
 
 .title {
   color: blue;
   font-family: "Oswald", sans-serif;
   font-size: 30px;
+  padding: 10px;
 }
 
 .filmLink {
@@ -30,7 +77,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 0 auto;
+  margin: 10px 0px;
 }
 
 * {
@@ -52,4 +99,23 @@
   content: "";
   display: table;
   clear: both;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  min-width: 700px;
+}
+
+#results-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#not-found-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
