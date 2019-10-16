@@ -1,10 +1,10 @@
 {
   "name": "emn-week5",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/server.js",
   "scripts": {
-    "test": "node ./src/test.js | tap-spec",
-    "start": "node server.js"
+    "test": "node test.js | tap-spec",
+    "start": "node ./src/server.js"
   },
   "author": "",
   "license": "ISC",
