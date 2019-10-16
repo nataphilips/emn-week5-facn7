@@ -111,6 +111,23 @@ function fetchBase() {
     .then(function(response) {
       base = response.data;
       list = [...base];
+      var container = document.getElementById("results-container");
+      var parent = document.getElementById("bigcont");
+      container.remove();
+      container = document.createElement("div");
+      container.id = "results-container";
+      parent.appendChild(container);
+      // var names = list.map(x => x.title).join(",");
+      list.forEach(e => {
+        var filmObj = {
+          title: e.title,
+          img: "https://image.tmdb.org/t/p/w400" + e.poster_path,
+          vote: e.vote_count,
+          release_date: e.release_date,
+          overview: e.overview
+        };
+        createMyElement(filmObj);
+      });
       console.log("fetch:", base);
     })
     .catch(function(error) {
