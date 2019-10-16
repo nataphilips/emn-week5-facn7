@@ -6,7 +6,7 @@ const requestModule = (request, response) => {
   const urlAPI = `https://api.themoviedb.org/3/movie/top_rated?api_key=6357c2313d5fd7a4065df2466b895a84&language=en-US&page=`;
   let results = [];
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 40; i++) {
     requester.get(urlAPI + i, (err, res, body) => {
       const { statusCode, headers } = res;
       const contentType = headers["content-type"];
@@ -25,7 +25,7 @@ const requestModule = (request, response) => {
   setTimeout(function() {
     response.writeHead(200, { "content-type": "application/json" });
     response.end(JSON.stringify(results));
-  }, 1800);
+  }, 2000);
 };
 
 module.exports = requestModule;
