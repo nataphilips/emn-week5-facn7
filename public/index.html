@@ -5,11 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Autocomplete</title>
     <link type="text/css" rel="stylesheet" href="public/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <section class="jambo">
       <div class="jamoHeader">
-        <h1>Search for a movie by a name</h1>
+        <h1>Find-a-movie</h1>
+      </div>
+      <div id="header-picture">
+        <img
+          src="https://www.themoviedb.org/assets/2/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png"
+          alt="header-picture"
+        />
       </div>
     </section>
 
@@ -18,7 +28,7 @@
         <tr>
           <th>
             <form action="./" method="POST">
-              <label for="search-movie">Search: </label>
+              <label for="search-movie">Search for a movie by a name: </label>
               <input
                 id="Search"
                 name="search-movie"
