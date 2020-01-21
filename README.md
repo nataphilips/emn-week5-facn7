@@ -66,7 +66,3 @@ Run the test command
 * Heroku - how to know why your page doesn't display? (read logs)
 * CI - how it looks like and why it's useful
 * Codecov - succeeded in creating a report
-
- 
-BLA!
-
